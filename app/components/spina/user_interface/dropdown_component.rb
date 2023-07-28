@@ -1,9 +1,9 @@
 module Spina
   module UserInterface
     class DropdownComponent < ApplicationComponent
-      renders_one :button
+      renders_one :button, "ButtonComponent"
 
-      renders_one :menu
+      renders_one :menu, "MenuComponent"
 
       class ButtonComponent < ApplicationComponent
         attr_reader :classes
