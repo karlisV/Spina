@@ -15,8 +15,12 @@ module Spina
       end
 
       def existing_locales
-        @existing_locales ||= @page.translations.pluck(:locale).map(&:to_sym).sort_by do |locale|
-          spina_locales.index(locale)
+        if @page.respond_to?(:translations)
+          @existing_locales ||= @page.translations.pluck(:locale).map(&:to_sym).sort_by do |locale|
+            spina_locales.index(locale)
+          end
+        else
+          [I18n.default_locale]
         end
       end
 
